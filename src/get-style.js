@@ -45,10 +45,7 @@ export default createSelector([
       'circle-color': color
     }
   };
-  let newLayersArray = [
-    ...BaseMapStyle.layers,
-    newBartLayer
-  ];
+  let newLayersArray = BaseMapStyle.layers.concat(newBartLayer);
   return {
     ...BaseMapStyle,
     layers: newLayersArray,
