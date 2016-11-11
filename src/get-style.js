@@ -1,8 +1,37 @@
 import BartData from './bart.json';
-import BaseMapStyle from './base-style.json';
 import {
   createSelector
 } from 'reselect';
+
+const BaseMapStyle = {
+  "version": 8,
+  "sources": {
+    "osm": {
+      "type": "vector",
+      "tiles": ["https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt?api_key=vector-tiles-LM25tq4"]
+    },
+    'bart-data': {
+      type: 'geojson',
+      data: BartData
+    }
+  },
+  "layers": [{
+    "id": "background",
+    "type": "background",
+    "paint": {
+      "background-color": "#EEEEEE"
+    }
+  }, {
+    "id": "water",
+    "type": "fill",
+    "source": "osm",
+    "source-layer": "water",
+    "filter": ["==", "$type", "Polygon"],
+    "paint": {
+      "fill-color": "#546E7A"
+    }
+  }]
+};
 
 export default createSelector([
   state => state.color
@@ -16,21 +45,12 @@ export default createSelector([
       'circle-color': color
     }
   };
-  let newBartSource = {
-    type: 'geojson',
-    data: BartData
-  };
   let newLayersArray = [
     ...BaseMapStyle.layers,
     newBartLayer
   ];
-  let newSourcesObject = {
-    ...BaseMapStyle.sources,
-    'bart-data': newBartSource
-  };
   return {
     ...BaseMapStyle,
     layers: newLayersArray,
-    sources: newSourcesObject
   };
 });
