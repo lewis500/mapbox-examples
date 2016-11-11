@@ -3,41 +3,32 @@ import React, {
   Component
 } from 'react';
 import ReactDOM from 'react-dom';
-import './style.css';
-import ColorPicker from './color-picker';
-import MapGL from './mapGL';
-import getStyle from 'get-style';
+import {
+  createStore
+} from 'redux';
+import {
+  Provider
+} from 'react-redux';
+import App from './app';
 
-class Main extends Component {
-  state = {
-    color: '#03A9F4'
-  };
-
-  colors = [
-    '#03A9F4',
-    '#FF5722',
-    '#E91E63'
-  ];
-
-  pickColor = (color) => {
-    this.setState({
-      color
-    });
+const reducer = (state = {
+  color: 'blue'
+}, action) => {
+  switch (action.type) {
+    case 'PICK_COLOR':
+      return {
+        color: action.color
+      };
+    default:
+      return state;
   }
+};
 
-  render() {
-    return (
-      <div>
-        <MapGL
-          style={getStyle(this.state)}
-          />
-        <ColorPicker
-          pickColor={this.pickColor}
-          colors={this.colors}
-          />
-      </div>
-    );
-  }
-}
+let store = createStore(reducer);
 
-ReactDOM.render(<Main />, document.getElementById('root'));
+var template = (
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
+ReactDOM.render(template, document.getElementById('root'));
