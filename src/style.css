@@ -1,0 +1,42 @@
+.mapGL {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+
+.color-picker{
+	position: absolute;
+	top: 20;
+	left: 20;
+}
+
+.color-row{
+	display: flex;
+}
+
+.color-bar{
+	width: 55px;
+	height: 55px;
+	border: 2px solid black;
+	margin: 3px;
+	box-sizing: border-box;
+	transition: border .1s ease-in-out;
+}
+
+.color-bar:hover{
+	border: 4px solid black;
+	transition: border .1s ease-in-out;
+}
+
+.color-title{
+	font-size: 18px;
+	text-align: center;
+	width: 100%;
+	background-color: white;
+	box-shadow: 0 0 2px #555;
+	margin-bottom: 8px;
+	/*padding: 4px;*/
+}

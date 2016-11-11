@@ -1,0 +1,16 @@
+{
+  "version": 8,
+  "name": "Simple",
+  "sources": {},
+  "glyphs": "mapbox://fonts/mapbox/{fontstack}/{range}.pbf",
+  "layers": [{
+    "id": "background",
+    "type": "background",
+    "interactive": true,
+    "layout": {},
+    "paint": {
+      "background-color": "hsl(55, 11%, 96%)"
+    }
+  }],
+  "id": "cive2tyai006z2inp5hr0ybo2"
+}
